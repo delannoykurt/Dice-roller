@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Lancer de Dé 🎲</title>
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='style.css') }}"
+        />
+    </head>
+    <body>
+        <div class="container">
+            <h1>🎲 Simulateur de Lancer de Dé</h1>
+
+            <h2>Résultat :</h2>
+            <p>Score total : <strong>{{ total_score }}</strong></p>
+
+            <div class="dice-container">
+                {% for number, image in dice_data %}
+                <div class="dice">
+                    <img
+                        src="{{ image }}"
+                        alt="Dé {{ number }}"
+                        class="dice-image"
+                    />
+                    <p><strong>{{ number }}</strong></p>
+                </div>
+                {% endfor %}
+            </div>
+
+            <form method="get">
+                <label for="dice">Nombre de dés à lancer :</label><br />
+                <input
+                    type="number"
+                    id="dice"
+                    name="dice"
+                    min="1"
+                    max="10"
+                    value="{{ num_dice }}"
+                    required
+                /><br /><br />
+
+                <button type="submit">🎲 Lancer</button>
+            </form>
+        </div>
+    </body>
+</html>
